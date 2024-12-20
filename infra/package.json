@@ -14,7 +14,7 @@
         "typescript": "^5.7.2"
     },
     "dependencies": {
-        "@pepperize/cdk-ses-smtp-credentials": "^0.3.795",
+        "@pepperize/cdk-ses-smtp-credentials": "^0.3.797",
         "aws-cdk-lib": "^2.173.1",
         "constructs": "^10.3.0"
     }
