@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "@pepperize/cdk-ses-smtp-credentials": "^0.3.795",
-        "aws-cdk-lib": "^2.173.1",
+        "aws-cdk-lib": "^2.173.2",
         "constructs": "^10.3.0"
     }
 }
