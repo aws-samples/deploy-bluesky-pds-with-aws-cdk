@@ -1,4 +1,4 @@
-FROM ghcr.io/bluesky-social/pds:0.4.188
+FROM ghcr.io/bluesky-social/pds:0.4.193
 
 RUN apk add --update bash jq
 
