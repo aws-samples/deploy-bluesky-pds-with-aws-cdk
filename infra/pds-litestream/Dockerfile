@@ -1,6 +1,6 @@
 FROM litestream/litestream
 
-RUN apk --no-cache add bash dumb-init
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh healthcheck.sh /
 COPY litestream.yml /etc/
