@@ -11,7 +11,7 @@
     "devDependencies": {
         "@types/node": "^25.5.0",
         "aws-cdk": "^2.1115.1",
-        "typescript": "^5.9.3"
+        "typescript": "^6.0.2"
     },
     "dependencies": {
         "@pepperize/cdk-ses-smtp-credentials": "^0.3.902",
