@@ -148,6 +148,11 @@ class BlueskyPdsPipelineStack extends Stack {
             },
             commands: ["npm install -g aws-cdk"],
           },
+          pre_build: {
+            commands: [
+              "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws",
+            ],
+          },
           build: {
             commands: [
               "cd $CODEBUILD_SRC_DIR/infra",

@@ -1,6 +1,6 @@
 FROM litestream/litestream AS litestream
 
-FROM alpine:3
+FROM public.ecr.aws/docker/library/alpine:3.23.4
 
 RUN apk add --no-cache bash dumb-init
 

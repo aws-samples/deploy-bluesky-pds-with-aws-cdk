@@ -1,4 +1,4 @@
-FROM alpine:3.23.4
+FROM public.ecr.aws/docker/library/alpine:3.23.4
 
 RUN apk --no-cache add bash dumb-init aws-cli
 
