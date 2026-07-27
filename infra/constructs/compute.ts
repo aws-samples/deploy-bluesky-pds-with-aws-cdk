@@ -109,23 +109,45 @@ export class Compute extends Construct {
       },
       priority: 1,
       conditions: [
-        // The only paths that should be forwarded to the PDS container
         elb.ListenerCondition.pathPatterns([
           '/xrpc/*',
           '/.well-known/*',
           '/oauth/*',
+        ]),
+        elb.ListenerCondition.hostHeaders([
+          props.domainName,
+          `*.${props.domainName}`,
+        ]),
+      ],
+    });
+
+    // Additional PDS paths (ALB limits rules to 5 condition values each)
+    listener.addAction('PdsAtproto', {
+      action: elb.ListenerAction.forward([this.targetGroup]),
+      priority: 5,
+      conditions: [
+        elb.ListenerCondition.pathPatterns([
           '/@atproto/*',
           '/tls-check',
+        ]),
+        elb.ListenerCondition.hostHeaders([
+          props.domainName,
+          `*.${props.domainName}`,
         ]),
       ],
     });
 
     // Additional paths forwarded to PDS (ALB limits rules to 5 path patterns each)
+    // Requires Host header to match domain to block bots probing by IP
     listener.addAction('PdsAccount', {
       action: elb.ListenerAction.forward([this.targetGroup]),
       priority: 4,
       conditions: [
         elb.ListenerCondition.pathPatterns(['/account', '/account/*']),
+        elb.ListenerCondition.hostHeaders([
+          props.domainName,
+          `*.${props.domainName}`,
+        ]),
       ],
     });
 
