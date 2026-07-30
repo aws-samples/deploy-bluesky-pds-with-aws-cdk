@@ -97,10 +97,13 @@ export class Monitoring extends Construct {
     faultAlarm.addAlarmAction(new cw_actions.SnsAction(topic));
 
     // Metric filters feed into the same metric, to capture
-    // structured logs (PDS) and unstructured logs (sidecars)
+    // structured logs (PDS) and unstructured logs (sidecars).
+    // Only alarm on server errors (5xx), not client errors (4xx) from bots.
     const errorStructuredLogsMetricFilter =
       props.compute.pdsLogGroup.addMetricFilter('StructuredLogErrorFilter', {
-        filterPattern: logs.FilterPattern.exists('$.err.type'),
+        filterPattern: logs.FilterPattern.literal(
+          '{ $.err.type = "*" && $.err.statusCode >= 500 }'
+        ),
         metricName: 'PDSLogErrors',
         metricNamespace: props.domainName.replace(/\./g, '-'),
       });
