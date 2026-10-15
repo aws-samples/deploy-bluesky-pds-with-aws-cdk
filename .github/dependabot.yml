@@ -6,21 +6,37 @@ updates:
     interval: monthly
   open-pull-requests-limit: 10
   versioning-strategy: increase
+  groups:
+    npm-infra:
+      patterns:
+        - "*"
 
 - package-ecosystem: docker
   directory: "/infra/pds"
   schedule:
     interval: weekly
+  groups:
+    docker-infra-pds:
+      patterns:
+        - "*"
 
 - package-ecosystem: docker
   directory: "/infra/pds-litestream"
   schedule:
     interval: weekly
+  groups:
+    docker-infra-pds-litestream:
+      patterns:
+        - "*"
 
 - package-ecosystem: docker
   directory: "/infra/pds-s3-file-sync"
   schedule:
     interval: weekly
+  groups:
+    docker-infra-pds-s3-file-sync:
+      patterns:
+        - "*"
 
 - package-ecosystem: npm
   directory: "/pipeline"
@@ -28,3 +44,7 @@ updates:
     interval: monthly
   open-pull-requests-limit: 10
   versioning-strategy: increase
+  groups:
+    npm-pipeline:
+      patterns:
+        - "*"
