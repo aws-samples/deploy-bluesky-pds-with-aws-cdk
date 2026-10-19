@@ -54,6 +54,8 @@ jobs:
   infra:
     name: Infra CDK Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -71,6 +73,8 @@ jobs:
   pipeline:
     name: Pipeline CDK Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
