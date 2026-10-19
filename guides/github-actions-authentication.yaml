@@ -60,17 +60,12 @@ Resources:
         Version: "2012-10-17"
         Statement:
           # Allow docker login to public.ecr.aws. Neither action supports resource-level permissions.
+          # This matches the login permissions in the AmazonElasticContainerRegistryPublicReadOnly managed policy.
           - Effect: Allow
             Action:
               - "ecr-public:GetAuthorizationToken"
-            Resource: "*"
-          - Effect: Allow
-            Action:
               - "sts:GetServiceBearerToken"
             Resource: "*"
-            Condition:
-              StringEquals:
-                sts:AWSServiceName: ecr-public.amazonaws.com
       Roles:
         - !Ref EcrPublicPullRole
 
